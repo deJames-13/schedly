@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #1A365D;
+  --primary-hover: #2A4365;
+  --primary-light: #EBF8FF;
+  --surface: #FFFFFF;
+  --surface-alt: #F8FAFC;
+  --border-color: #E2E8F0;
+}
+
+body {
+  background-color: #F8FAFC;
+  color: #1A202C;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Material elevation subtle shadows */
+.elevation-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.elevation-2 {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.elevation-3 {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* Material Floating Label Input Styling */
+.mui-input-group {
+  position: relative;
+}
+
+.mui-input-group input:focus ~ label,
+.mui-input-group input:not(:placeholder-shown) ~ label {
+  transform: translateY(-22px) scale(0.85);
+  color: #1A365D;
+  background: #FFFFFF;
+  padding: 0 4px;
+}
+
+/* Accessibility Focus Ring */
+*:focus-visible {
+  outline: 2px solid #1A365D;
+  outline-offset: 2px;
+}

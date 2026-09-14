@@ -1,0 +1,30 @@
+<div id="landing-page-container" class="min-h-screen bg-white">
+  <!-- 1. Hero Section -->
+  <section id="hero-section" class="pt-12 pb-16 md:pt-20 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-200">
+    <app-hero-section
+      (getStarted)="onGetStarted()"
+      (loadDemo)="onSelectPreset($event)"
+    />
+
+    <!-- 2. Interactive Split Comparison Preview -->
+    <app-interactive-preview />
+  </section>
+
+  <!-- 3. Core Capabilities & 3-Step Workflow -->
+  <app-feature-grid />
+
+  <!-- 4. Sample Presets (1-Click Prototypes) -->
+  <app-preset-templates
+    (selectPreset)="onSelectPreset($event)"
+    (uploadOwn)="onGetStarted()"
+  />
+
+  <!-- 5. Pricing Tiers -->
+  <app-pricing-section
+    (selectPlan)="onGetStarted()"
+    (contactSales)="onOpenAuth()"
+  />
+
+  <!-- 6. Footer -->
+  <app-landing-footer />
+</div>

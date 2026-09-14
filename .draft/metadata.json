@@ -1,0 +1,6 @@
+{
+  "name": "Schedly",
+  "description": "Professional Schedule Management System transforming physical schedules into digital clarity with structured editing and calendar syncing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

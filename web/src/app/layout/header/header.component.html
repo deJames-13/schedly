@@ -1,0 +1,212 @@
+<header id="main-header" class="sticky top-0 z-40 bg-white border-b border-slate-200 elevation-1">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Brand Logo -->
+      <a
+        id="brand-logo"
+        [routerLink]="authStore.isAuthenticated() ? '/upload' : '/landing'"
+        class="flex items-center gap-2.5 cursor-pointer select-none group text-decoration-none"
+        aria-label="Schedly Home"
+      >
+        <div class="w-8 h-8 bg-[#1A365D] text-white flex items-center justify-center rounded-[2px] font-bold tracking-tight text-base shadow-sm group-hover:bg-[#2A4365] transition-colors">
+          <span class="font-semibold">S</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-bold tracking-tight text-[#1A365D] leading-none">
+            SCHEDLY
+          </span>
+          <span class="text-[10px] tracking-wider text-slate-500 font-medium uppercase mt-0.5">
+            Schedule Management
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav id="header-nav" class="hidden md:flex items-center space-x-1" aria-label="Main Navigation">
+        @if (!authStore.isAuthenticated()) {
+          <a
+            id="nav-landing-features"
+            routerLink="/landing"
+            fragment="features"
+            routerLinkActive="text-[#1A365D] bg-slate-100 font-semibold"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="px-3.5 py-2 text-sm font-medium rounded-[2px] transition-colors text-slate-600 hover:text-[#1A365D] hover:bg-slate-50"
+          >
+            Features & Workflow
+          </a>
+          <a
+            id="nav-landing-pricing"
+            routerLink="/landing"
+            fragment="pricing"
+            class="px-3.5 py-2 text-sm font-medium text-slate-600 hover:text-[#1A365D] hover:bg-slate-50 rounded-[2px] transition-colors"
+          >
+            Pricing
+          </a>
+          <a
+            id="nav-auth-login"
+            routerLink="/auth"
+            routerLinkActive="text-[#1A365D] bg-slate-100 font-semibold"
+            class="px-3.5 py-2 text-sm font-medium rounded-[2px] transition-colors text-slate-700 hover:text-[#1A365D] hover:bg-slate-50"
+          >
+            Log In / Sign Up
+          </a>
+          <a
+            id="nav-cta-get-started"
+            routerLink="/upload"
+            class="ml-2 inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-[#1A365D] hover:bg-[#2A4365] rounded-[2px] elevation-1 transition-all"
+          >
+            <span>Get Started</span>
+            <svg lucideArrowRight class="w-4 h-4"></svg>
+          </a>
+        } @else {
+          <a
+            id="nav-upload"
+            routerLink="/upload"
+            routerLinkActive="text-[#1A365D] bg-slate-100 font-semibold"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-[2px] transition-colors text-slate-600 hover:text-[#1A365D] hover:bg-slate-50"
+          >
+            <svg lucideUpload class="w-4 h-4"></svg>
+            <span>Upload Schedule</span>
+          </a>
+
+          <a
+            id="nav-schedule-view"
+            routerLink="/schedule"
+            routerLinkActive="text-[#1A365D] bg-slate-100 font-semibold"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-[2px] transition-colors text-slate-600 hover:text-[#1A365D] hover:bg-slate-50"
+          >
+            <svg lucideCalendar class="w-4 h-4"></svg>
+            <span>Active Schedule</span>
+            @if (scheduleStore.totalEntriesCount() > 0) {
+              <span class="ml-1 px-1.5 py-0.2 text-[10px] font-mono bg-[#1A365D] text-white rounded-[2px]">
+                {{ scheduleStore.totalEntriesCount() }}
+              </span>
+            }
+          </a>
+
+          <a
+            id="nav-history"
+            routerLink="/history"
+            routerLinkActive="text-[#1A365D] bg-slate-100 font-semibold"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-[2px] transition-colors text-slate-600 hover:text-[#1A365D] hover:bg-slate-50"
+          >
+            <svg lucideClock class="w-4 h-4"></svg>
+            <span>History</span>
+          </a>
+
+          <a
+            id="nav-profile"
+            routerLink="/profile"
+            routerLinkActive="text-[#1A365D] bg-slate-100 font-semibold"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-[2px] transition-colors text-slate-600 hover:text-[#1A365D] hover:bg-slate-50"
+          >
+            <svg lucideUser class="w-4 h-4"></svg>
+            <span>Profile</span>
+          </a>
+
+          <div class="h-5 w-[1px] bg-slate-200 mx-2" aria-hidden="true"></div>
+
+          <button
+            id="nav-logout-btn"
+            type="button"
+            (click)="handleLogout()"
+            title="Sign out of current session"
+            class="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-500 hover:text-red-700 hover:bg-red-50 rounded-[2px] transition-colors cursor-pointer"
+          >
+            <svg lucideLogOut class="w-3.5 h-3.5"></svg>
+            <span class="hidden lg:inline">Sign Out</span>
+          </button>
+        }
+      </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex items-center md:hidden">
+        <button
+          type="button"
+          (click)="toggleMobileMenu()"
+          class="p-2 text-slate-600 hover:text-[#1A365D] hover:bg-slate-100 rounded-[2px] focus:outline-none focus:ring-2 focus:ring-[#1A365D]"
+          aria-expanded="false"
+          aria-label="Toggle Navigation Menu"
+        >
+          @if (mobileMenuOpen()) {
+            <svg lucideX class="w-5 h-5"></svg>
+          } @else {
+            <svg lucideMenu class="w-5 h-5"></svg>
+          }
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  @if (mobileMenuOpen()) {
+    <div class="md:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-1 shadow-md">
+      @if (!authStore.isAuthenticated()) {
+        <a
+          routerLink="/landing"
+          (click)="closeMobileMenu()"
+          class="block px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-[2px]"
+        >
+          Features & Workflow
+        </a>
+        <a
+          routerLink="/auth"
+          (click)="closeMobileMenu()"
+          class="block px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-[2px]"
+        >
+          Log In / Sign Up
+        </a>
+        <a
+          routerLink="/upload"
+          (click)="closeMobileMenu()"
+          class="block px-3 py-2 text-sm font-semibold text-[#1A365D] bg-slate-50 rounded-[2px]"
+        >
+          Get Started
+        </a>
+      } @else {
+        <a
+          routerLink="/upload"
+          (click)="closeMobileMenu()"
+          class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-[2px]"
+        >
+          <svg lucideUpload class="w-4 h-4 text-[#1A365D]"></svg>
+          <span>Upload Schedule</span>
+        </a>
+        <a
+          routerLink="/schedule"
+          (click)="closeMobileMenu()"
+          class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-[2px]"
+        >
+          <svg lucideCalendar class="w-4 h-4 text-[#1A365D]"></svg>
+          <span>Active Schedule</span>
+        </a>
+        <a
+          routerLink="/history"
+          (click)="closeMobileMenu()"
+          class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-[2px]"
+        >
+          <svg lucideClock class="w-4 h-4 text-[#1A365D]"></svg>
+          <span>History</span>
+        </a>
+        <a
+          routerLink="/profile"
+          (click)="closeMobileMenu()"
+          class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-[2px]"
+        >
+          <svg lucideUser class="w-4 h-4 text-[#1A365D]"></svg>
+          <span>Profile</span>
+        </a>
+        <button
+          type="button"
+          (click)="handleLogout()"
+          class="w-full text-left flex items-center gap-2 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-[2px]"
+        >
+          <svg lucideLogOut class="w-4 h-4 text-red-600"></svg>
+          <span>Sign Out</span>
+        </button>
+      }
+    </div>
+  }
+</header>

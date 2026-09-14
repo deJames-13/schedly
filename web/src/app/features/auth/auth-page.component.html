@@ -1,0 +1,47 @@
+<div id="onboarding-page-container" class="min-h-[calc(100vh-64px)] flex items-center justify-center p-4 sm:p-6 bg-[#F8FAFC]">
+  <div class="w-full max-w-md">
+
+    <!-- Crisp Material Card -->
+    <div class="bg-white border border-slate-200 rounded-[2px] elevation-2 p-6 sm:p-8">
+
+      <!-- Header & Logo Badge -->
+      <div class="text-center mb-6">
+        <div class="w-9 h-9 bg-[#1A365D] text-white flex items-center justify-center rounded-[2px] font-bold text-lg mx-auto mb-3 shadow-sm">
+          S
+        </div>
+        <h1 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+          Welcome to Schedly
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          Access your digitized schedules, calendar syncs, and parsing history.
+        </p>
+      </div>
+
+      <!-- Auth Form (Sign in / Sign up) -->
+      <app-auth-form (formSubmitted)="onAuthSuccess($event)" />
+
+      <!-- Quick Demo Sign In -->
+      <app-demo-login (demoSignIn)="onDemoSignIn()" />
+
+      <!-- Cancel / Return Link -->
+      <div class="mt-4 text-center">
+        <button
+          type="button"
+          (click)="onCancel()"
+          class="text-xs text-slate-500 hover:text-slate-800 underline cursor-pointer"
+        >
+          Cancel and return to home page
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Security Badges -->
+    <div class="mt-6 text-center text-[11px] text-slate-400 font-mono">
+      <span>Enterprise 256-bit AES Encryption</span>
+      <span class="mx-2">•</span>
+      <span>SOC-2 Type II Certified</span>
+    </div>
+
+  </div>
+</div>
