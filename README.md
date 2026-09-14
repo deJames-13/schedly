@@ -1,10 +1,6 @@
 # Schedly
 
 <p align="center">
-  <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=1200&auto=format&fit=crop&q=80" alt="Schedly Schedule Management Banner" width="100%" style="border-radius: 4px; max-height: 280px; object-fit: cover;" />
-</p>
-
-<p align="center">
   <strong>Transform messy paper schedules, whiteboard rosters, and printed syllabi into structured, editable digital calendars with instant two-way sync.</strong>
 </p>
 
